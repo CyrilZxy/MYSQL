@@ -1,0 +1,116 @@
+
+SQL结构化查询语言
+
+库 --- 一个工程
+表 --- 类
+表中行 --- 对象
+表中列 --- 属性
+
+库 --- 文件夹
+表 --- 一组文件
+
+DDL / DML
+DDL：建库建表，删库删表
+DML：增删查改
+
+1.关键字不区分大小写
+2.以；结尾或 \G
+3.引号应用   'hello'  "hello"不区分，反引号 ` ` 表名库名字段名（可不写）
+
+
+登录 mysql -uroot -p
+密码为空
+
+
+sql语句
+1.库：
+		 create database 库名 （IF NOT EXISTS 库名）；	建库
+show databases； 				查看有哪些库
+drop database 库名；				删除
+use 库名；						设置默认库
+show create database 库名；		查看建库的语句
+
+2.表：
+create table 表名 (                      )；	 			建表列定义
+show table； 						查看有哪些表
+drop table 表名；
+SHOW CREATE TABLE `表名`;
+DESC `表名`;
+3. 表的数据类型
+	1. 数值类型
+		1. 整型
+			INT	/ BIGINT
+		2. 浮点型
+			FLOAT/DOUBLE 有精度损失
+			DECIMAL/NUMERIC 无精度损失
+	2. 字符串类型（二进制的/文本的）
+		CHAR(10)
+		VARCHAR(10)		TEXT		文本的
+		视频/音频/图片	BLOB
+	3. 时间相关的
+		DATE		年-月-日
+		TIME		时:分:秒
+		DATETIME	年-月-日 时:分:秒
+		TIMESTAMP	1970-2038
+select database()；				查看当前库
+select  *  from 表名；				显示表内内容，全列查询
+select 属性，属性+10 AS 别名 from 表名；
+select distinct 属性 from 表名;		去重操作
+mysql> create table student(
+    -> id int,
+    -> sn int comment '学号',
+    -> name varchar(20) comment '姓名',
+    -> mail varchar(20) comment '邮箱'
+    -> );
+    
+    
+mysql> insert into student values(001,3055,'张欣悦','115@qq.com');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into student values(002,3056,'王倩倩','123@qq.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values(003,3057,'巴啦啦',null);
+mysql> insert into student values(003,3057,'巴啦啦',null);
+
+mysql> insert into student(id,sn,name)values
+    -> (004,3077,'宫素'),
+    -> (005,3078,'刘子晴');
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select id,name from student;
+mysql> select id,name,sn+10 from student;
+mysql> select id,name,sn+10 SN from student;
+mysql> select id,name,sn+10 AS SN from student;
+mysql> select distinct sn from student;
+
+
+
+mysql> create table SSS(
+    -> id int,
+    -> name varchar(20) comment '姓名',
+    -> num1 int comment '语文',
+    -> num2 int comment '数学',
+    -> num3 int comment '英语',
+    -> class varchar(20) comment '班级'
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into SSS(id,name,num1,num2,num3,class)values
+    -> (001,'张欣悦',88,79,85,'智能1702'),
+    -> (002,'王倩倩',79,85,88,'智能1701'),
+    -> (003,'刘子晴',80,77,83,'智能1701');
+Query OK, 3 rows affected (0.01 sec)
+
+，/
+
+
+
+
+
+
+
+
+
+
