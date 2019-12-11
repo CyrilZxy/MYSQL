@@ -1,0 +1,119 @@
+create table stud (
+name varchar(20),
+gender varchar(3) comment "性别，男、女、保密",
+age int,
+weight double comment"体重，单位公斤",
+height double comment"身高，单位厘米"
+);
+
+
+insert into stud(name,gender,age,weight,height)values
+('宫素','女',18,90.0,160.0),
+('刘子晴','女',18,95.0,170.0);
+
+
+
+select * from stud;
+
+insert into stud(name,gender,age,weight,height)values 
+('张欣悦','女',20,60,170);
+
+select name from stud where (height/weight)<2.1;
+
+select name from stud order by age desc limit 1;
+
+
+select name from stud order by age desc limit 1 offset 2;
+
+
+update stud set name='王倩倩' where name='张欣悦';
+
+
+update stud set age=age+1;
+
+
+ delete from stud order by age desc;
+ 
+ ---------------------------------------------------------------
+ show create table stud;
+ 
+ | stud  | CREATE TABLE `stud` (
+  `name` varchar(20) DEFAULT NULL,
+  `gender` varchar(3) DEFAULT NULL COMMENT '性别，男、女、保密',
+  `age` int(11) DEFAULT NULL,
+  `weight` double DEFAULT NULL COMMENT '体重，单位公斤',
+  `height` double DEFAULT NULL COMMENT '身高，单位厘米'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+ 
+ 
+DEFAULT 默认值
+UNIQUE 唯一的
+ 
+ 
+ 
+CREATE TABLE `teacher` (
+  `name` varchar(20) UNIQUE DEFAULT 'zzz' ,
+  `gender` varchar(3) DEFAULT '保密' COMMENT '性别，男、女、保密',
+  `age` int(11) DEFAULT 0,
+  `weight` double DEFAULT 0 COMMENT '体重，单位公斤',
+  `height` double DEFAULT 0 COMMENT '身高，单位厘米'
+)
+ 
+ 
+mysql> insert into teacher(name)values(null);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into teacher(name)values(null);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into teacher(name)values(NULL);
+Query OK, 1 row affected (0.01 sec)
+
+ 
+ 
+ 
+ CREATE TABLE `slaves` (
+ id int primary key AUTO_INCREMENT,
+  `name` varchar(20) UNIQUE DEFAULT 'zzz' ,
+  `gender` varchar(3) DEFAULT '保密' COMMENT '性别，男、女、保密',
+  `age` int(11) DEFAULT 0,
+  `weight` double DEFAULT 0 COMMENT '体重，单位公斤',
+  `height` double DEFAULT 0 COMMENT '身高，单位厘米'
+)
+ 
+ 
+create table users(
+	id int primary key auto_increment,
+	username varchar(10) not null unique
+);
+
+create table wenzhang(	
+	id_w int primary key auto_increment,
+	id int not null,
+	title varchar(20) not null,
+	content text not null,
+	published_at datetime not null
+);
+
+create table pinglun(
+	id_p int primary key auto_increment,
+	id int not null,
+	id_w int not null,
+	content varchar(20) not null,
+	published_at datetime not null
+);
+
+create table like_relation(
+	id int not null,
+	id_w int not null,
+	primary key(id,id_w)
+);
+
+ insert into users (username) values('高博');
+ 
+ 
+ 
+ 
+
+
+
