@@ -1,0 +1,66 @@
+
+//import com.mysql.jdbc.Driver;
+
+import java.sql.*;
+
+public class Main {
+    public static void main(String[] args) throws ClassNotFoundException,SQLException {
+
+        //1.注册Driver
+        Class.forName("com.mysql.jdbc.Driver");
+
+        //2.获取连接
+        String url="jdbc:mysql://127.0.0.1:3306/weibo?useSSL=false";
+        String username="root";
+        String password="";
+
+        Connection connection=DriverManager.getConnection(
+                url,
+                username,
+                password
+        );
+
+        //System.out.println(connection);
+
+        //3.获取语句        statement
+        Statement statement=connection.createStatement();
+
+        //4.执行一条 select database（）
+        String sql="select database()";
+        ResultSet resultSet=statement.executeQuery(sql);
+
+        //5.事先知道结果只有一行一列
+        resultSet.next();                //先调一次，到第一行
+        String name=resultSet.getString(1);     //第一列从1开始
+        System.out.println(name);
+
+        //-3.关闭结果集
+        resultSet.close();
+
+
+        //多行读取
+        sql="select id,username from users order by id";
+        resultSet=statement.executeQuery(sql);
+        while(resultSet.next()){
+            int id =resultSet.getInt(1);
+            String user=resultSet.getString(2);
+            System.out.println(id+","+user);
+        }
+        resultSet.close();
+
+
+
+
+
+
+        //-2.关闭语句
+        statement.close();
+        //-1.关闭连接
+        connection.close();
+
+    }
+
+
+
+
+}
