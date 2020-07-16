@@ -1,0 +1,15 @@
+//查找最晚入职员工所有信息 hire_date不相同
+
+1.子查询
+select * from employees 
+where hire_date=( 
+	select max(hire_date) from employees
+);
+
+
+2.desc降序排序输出1行
+select * from employees
+order by hire_date desc 
+limit1; 	|| limit 1 offset 0;		|| limit0,1;
+
+
