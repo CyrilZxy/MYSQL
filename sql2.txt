@@ -1,0 +1,12 @@
+//查找倒数第三个员工晚入职员工所有信息 hire_date不相同
+
+
+select * from employees
+order by hire_date desc limit 2,1
+
+select * from employees
+order by hire_date desc limit 1 offset 2
+
+
+limit x,y;	跳过x条数据，取y条数据。
+limit x offset y;	跳过y条数据，取x条数据。
