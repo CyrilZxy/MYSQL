@@ -1,0 +1,4 @@
+# Write your MySQL query statement below
+select Email from Person
+group by Email					//分组
+having count(Email)>1 			//条件 计数>1
